@@ -3,9 +3,15 @@ import styled from 'styled-components';
 import MOCK_DATA from '../MOCK_DATA';
 
 const DetailContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   padding: 20px;
+  margin-top: 200px;
 `;
+
 
 const PokemonImage = styled.img`
   width: 150px;

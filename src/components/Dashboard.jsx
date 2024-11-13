@@ -1,14 +1,20 @@
 import styled from 'styled-components';
-import PokeballImage from '../assets/pokeball.png'; // 포켓볼 이미지 경로 설정
+import PokeballImage from '../assets/pokeball.png';
 
 const DashboardContainer = styled.div`
-  border: 1px solid #ddd;
+  border: 3px solid #ddd;
   border-radius: 8px;
   padding: 16px;
-  margin: 16px 0;
-  max-width: 800px;
-  width: 100%;
+  margin: 50px 250px 50px 250px;
   text-align: center;
+  align-items: center;
+  min-height: 350px;
+  background-color: white;
+`;
+
+const PokemonLittleTitle = styled.h2`
+  margin-bottom: 60px;
+  font-size: 35px;
 `;
 
 const PokemonList = styled.div`
@@ -22,13 +28,14 @@ const Slot = styled.div`
 `;
 
 const PokemonImage = styled.img`
-  width: 50px;
-  height: 50px;
+  align-items: center;
+  width: 120px; 
+  height: 120px;
 `;
 
 const PokeballPlaceholder = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 120px;
+  height: 120px;
   opacity: 0.5;
 `;
 
@@ -48,12 +55,12 @@ const RemoveButton = styled.button`
 `;
 
 function Dashboard({ selectedPokemon, removePokemon }) {
-  // 6개의 슬롯을 준비
+
   const slots = Array.from({ length: 6 }, (_, index) => selectedPokemon[index]);
 
   return (
     <DashboardContainer>
-      <h2>나만의 포켓몬 (최대 6마리)</h2>
+      <PokemonLittleTitle>나만의 포켓몬 (최대 6마리)</PokemonLittleTitle>
       <PokemonList>
         {slots.map((pokemon, index) => (
           <Slot key={index}>

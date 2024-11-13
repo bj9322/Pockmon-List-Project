@@ -1,13 +1,28 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Dex from './pages/Dex';
-import MOCK_DATA from './MOCK_DATA';
 import PokemonDetail from './components/PokemonDetail';
+import MOCK_DATA from './MOCK_DATA';
+import { createGlobalStyle } from 'styled-components';
 
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: #fff9c4;
+  }
+`;
 
 function App() {
-  const [selectedPokemon, setSelectedPokemon] = useState([]);
+
+  const [selectedPokemon, setSelectedPokemon] = useState(() => {
+    const storedPokemon = localStorage.getItem('selectedPokemon');
+    return storedPokemon ? JSON.parse(storedPokemon) : [];
+  });
+
+
+  useEffect(() => {
+    localStorage.setItem('selectedPokemon', JSON.stringify(selectedPokemon));
+  }, [selectedPokemon]);
 
   const addPokemon = (pokemon) => {
     if (selectedPokemon.length >= 6) {
@@ -26,6 +41,8 @@ function App() {
   };
 
   return (
+    <>
+    <GlobalStyle></GlobalStyle>
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -36,8 +53,8 @@ function App() {
         <Route path="/dex/:pokemonId" element={<PokemonDetail />} />
       </Routes>
     </Router>
+    </>
   );
 }
 
 export default App;
-

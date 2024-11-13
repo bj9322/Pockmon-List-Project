@@ -1,10 +1,17 @@
+import styled from 'styled-components';
 import Dashboard from '../components/Dashboard';
 import PokemonList from '../components/PokemonList';
+
+
+const Poketitle = styled.h1`
+  text-align: center;
+  font-size: 50px;
+`
 
 function Dex({ data, selectedPokemon, addPokemon, removePokemon }) {
   return (
     <div>
-      <h1>포켓몬 도감</h1>
+      <Poketitle>포켓몬 도감</Poketitle>
       <Dashboard selectedPokemon={selectedPokemon} removePokemon={removePokemon} />
       <PokemonList data={data} addPokemon={addPokemon} />
     </div>

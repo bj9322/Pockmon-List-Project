@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Card = styled.div`
   border: 1px solid #ddd;
@@ -7,7 +7,6 @@ const Card = styled.div`
   padding: 16px;
   margin: 8px;
   text-align: center;
-  cursor: pointer;
 `;
 
 const PokemonImage = styled.img`
@@ -39,25 +38,22 @@ const AddButton = styled.button`
 `;
 
 function PokemonCard({ pokemon, addPokemon }) {
-  const navigate = useNavigate();
-
-  const handleNavigate = () => {
-    navigate(`/dex/${pokemon.id}`);
-  };
-
   const handleAdd = (e) => {
-    e.stopPropagation(); // Prevent navigation when clicking "Add"
+    e.stopPropagation();
     addPokemon(pokemon);
   };
 
   return (
-    <Card onClick={handleNavigate}>
-      <PokemonImage src={pokemon.img_url} alt={pokemon.korean_name} />
-      <PokemonName>{pokemon.korean_name}</PokemonName>
-      <PokemonType>{pokemon.types.join(", ")}</PokemonType>
+    <Card>
+<Link to={`/dex/${pokemon.id}`} style={{ textDecoration: 'none' }}>
+  <PokemonImage src={pokemon.img_url} alt={pokemon.korean_name} />
+  <PokemonName>{pokemon.korean_name}</PokemonName>
+  <PokemonType>{pokemon.types.join(', ')}</PokemonType>
+</Link>
       <AddButton onClick={handleAdd}>추가</AddButton>
     </Card>
   );
 }
 
 export default PokemonCard;
+

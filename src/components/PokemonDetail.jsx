@@ -55,10 +55,6 @@ function PokemonDetail() {
   const navigate = useNavigate();
   const pokemon = MOCK_DATA.find((p) => p.id === parseInt(pokemonId, 10));
 
-  if (!pokemon) {
-    return <p>포켓몬 정보를 찾을 수 없습니다.</p>;
-  }
-
   return (
     <DetailContainer>
       <PokemonImage src={pokemon.img_url} alt={pokemon.korean_name} />

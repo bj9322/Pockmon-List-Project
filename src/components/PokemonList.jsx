@@ -27,3 +27,4 @@ function PokemonList({ data, addPokemon }) {
 }
 
 export default PokemonList;
+

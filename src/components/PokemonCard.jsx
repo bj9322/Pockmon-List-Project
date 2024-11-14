@@ -1,4 +1,6 @@
+import { useContext } from 'react';
 import styled from 'styled-components';
+import { PokemonContext } from '../context/PokemonContext';
 import { Link } from 'react-router-dom';
 
 const Card = styled.div`
@@ -16,10 +18,12 @@ const PokemonImage = styled.img`
 
 const PokemonName = styled.h3`
   margin: 8px 0;
+  text-decoration: none;
 `;
 
 const PokemonType = styled.p`
   color: #555;
+  text-decoration: none;
 `;
 
 const AddButton = styled.button`
@@ -37,7 +41,9 @@ const AddButton = styled.button`
   }
 `;
 
-function PokemonCard({ pokemon, addPokemon }) {
+function PokemonCard({ pokemon }) {
+  const { addPokemon } = useContext(PokemonContext);
+
   const handleAdd = (e) => {
     e.stopPropagation();
     addPokemon(pokemon);
@@ -45,11 +51,11 @@ function PokemonCard({ pokemon, addPokemon }) {
 
   return (
     <Card>
-<Link to={`/dex/${pokemon.id}`} style={{ textDecoration: 'none' }}>
-  <PokemonImage src={pokemon.img_url} alt={pokemon.korean_name} />
-  <PokemonName>{pokemon.korean_name}</PokemonName>
-  <PokemonType>{pokemon.types.join(', ')}</PokemonType>
-</Link>
+      <Link to={`/dex/${pokemon.id}`} style={{ textDecoration: 'none' }}>
+        <PokemonImage src={pokemon.img_url} alt={pokemon.korean_name} />
+        <PokemonName>{pokemon.korean_name}</PokemonName>
+        <PokemonType>{pokemon.types.join(', ')}</PokemonType>
+      </Link>
       <AddButton onClick={handleAdd}>추가</AddButton>
     </Card>
   );

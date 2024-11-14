@@ -14,12 +14,12 @@ const ListContainer = styled.div`
   background-color: white;
 `;
 
-function PokemonList({ data, addPokemon }) {
+function PokemonList({ data }) {
   return (
     <Wrapper>
       <ListContainer>
         {data.map((pokemon) => (
-          <PokemonCard key={pokemon.id} pokemon={pokemon} addPokemon={addPokemon} />
+          <PokemonCard key={pokemon.id} pokemon={pokemon} />
         ))}
       </ListContainer>
     </Wrapper>

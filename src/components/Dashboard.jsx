@@ -1,4 +1,6 @@
+import { useContext } from 'react';
 import styled from 'styled-components';
+import { PokemonContext } from '../context/PokemonContext';
 import PokeballImage from '../assets/pokeball.png';
 
 const DashboardContainer = styled.div`
@@ -25,6 +27,7 @@ const PokemonList = styled.div`
 
 const Slot = styled.div`
   text-align: center;
+  align-items: center;
 `;
 
 const PokemonImage = styled.img`
@@ -54,7 +57,8 @@ const RemoveButton = styled.button`
   }
 `;
 
-function Dashboard({ selectedPokemon, removePokemon }) {
+function Dashboard() {
+  const { selectedPokemon, removePokemon } = useContext(PokemonContext);
 
   const slots = Array.from({ length: 6 }, (_, index) => selectedPokemon[index]);
 
@@ -73,6 +77,7 @@ function Dashboard({ selectedPokemon, removePokemon }) {
             ) : (
               <PokeballPlaceholder src={PokeballImage} alt="Empty Slot" />
             )}
+
           </Slot>
         ))}
       </PokemonList>

@@ -56,4 +56,3 @@ function PokemonCard({ pokemon, addPokemon }) {
 }
 
 export default PokemonCard;
-
